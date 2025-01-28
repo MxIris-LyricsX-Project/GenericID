@@ -10,7 +10,7 @@ let package = Package(
             targets: ["GenericID"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/cx-org/CXShim", .upToNextMinor(from: "0.4.0"))
+        .package(url: "https://github.com/MxIris-LyricsX-Project/CXShim", .branchItem("master"))
     ],
     targets: [
         .target(name: "GenericID", dependencies: ["CXShim"]),
@@ -25,11 +25,7 @@ enum CombineImplementation {
     case openCombine
     
     static var `default`: CombineImplementation {
-        #if canImport(Combine)
-        return .combine
-        #else
         return .combineX
-        #endif
     }
     
     init?(_ description: String) {
