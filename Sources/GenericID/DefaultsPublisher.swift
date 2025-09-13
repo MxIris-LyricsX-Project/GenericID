@@ -15,10 +15,10 @@
 //  all copies or substantial portions of the Software.
 //
 
-#if canImport(CXShim)
+#if canImport(Combine)
 
 import Foundation
-import CXShim
+import Combine
 
 extension UserDefaults {
     
@@ -37,7 +37,7 @@ extension UserDefaults {
 
 extension UserDefaults {
     
-    public struct Publisher<Value>: CXShim.Publisher {
+    public struct Publisher<Value>: Combine.Publisher {
         
         public typealias Output = Value?
         public typealias Failure = Never
@@ -56,7 +56,7 @@ extension UserDefaults {
         }
     }
     
-    public struct MultiValuePublisher: CXShim.Publisher {
+    public struct MultiValuePublisher: Combine.Publisher {
         
         public typealias Output = Void
         public typealias Failure = Never
@@ -78,7 +78,7 @@ extension UserDefaults {
 
 private extension UserDefaults {
     
-    final class Subscription<Output, Downstream: Subscriber>: NSObject, CXShim.Subscription where Downstream.Input == Output?, Downstream.Failure == Never {
+    final class Subscription<Output, Downstream: Subscriber>: NSObject, Combine.Subscription where Downstream.Input == Output?, Downstream.Failure == Never {
         
         private let lock = NSLock()
         
@@ -141,7 +141,7 @@ private extension UserDefaults {
         }
     }
     
-    final class MultiValueSubscription<Downstream: Subscriber>: NSObject, CXShim.Subscription where Downstream.Input == Void, Downstream.Failure == Never {
+    final class MultiValueSubscription<Downstream: Subscriber>: NSObject, Combine.Subscription where Downstream.Input == Void, Downstream.Failure == Never {
         
         private let lock = NSLock()
         
@@ -208,4 +208,4 @@ private extension UserDefaults {
     }
 }
 
-#endif // canImport(CXShim)
+#endif // canImport(Combine)

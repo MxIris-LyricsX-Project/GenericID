@@ -4,16 +4,17 @@ import PackageDescription
 
 let package = Package(
     name: "GenericID",
+    platforms: [.macOS(.v10_15)],
     products: [
         .library(
             name: "GenericID",
             targets: ["GenericID"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/MxIris-LyricsX-Project/CXShim", .branchItem("master"))
+//        .package(url: "https://github.com/MxIris-LyricsX-Project/CXShim", .branchItem("master"))
     ],
     targets: [
-        .target(name: "GenericID", dependencies: ["CXShim"]),
+        .target(name: "GenericID", dependencies: [/*"CXShim"*/]),
         .testTarget(name: "GenericIDTests", dependencies: ["GenericID"]),
     ]
 )
